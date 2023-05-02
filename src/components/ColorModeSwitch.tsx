@@ -5,9 +5,9 @@ const ColorModeSwitch = () => {
   return (
     <HStack onClick={toggleColorMode} paddingX={5}>
       {colorMode === "dark" ? (
-        <BsFillMoonFill style={{ fontSize: "2rem" }} />
+        <BsFillMoonFill style={{ fontSize: "1.5rem" }} />
       ) : (
-        <BsSunFill style={{ fontSize: "2rem" }} />
+        <BsSunFill style={{ fontSize: "1.5rem" }} />
       )}
     </HStack>
   );
