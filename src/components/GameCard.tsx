@@ -8,7 +8,7 @@ interface Props {
 }
 const GameCard = ({ game }: Props) => {
   return (
-    <Card overflow="hidden">
+    <Card width='240px' overflow="hidden">
       <Image src={getCroppedImageURL(game.background_image)} />
       <CardBody>
         <HStack justifyContent="space-between">
