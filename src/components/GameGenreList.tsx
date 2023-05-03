@@ -15,10 +15,9 @@ const GameGenreList = () => {
   return (
     <>
       {error && <Text color="red">{error}</Text>}
-        {isLoading &&
-      <List>
-
-         { skeletonCount.map((skeleton) => (
+      {isLoading && (
+        <List>
+          {skeletonCount.map((skeleton) => (
             <ListItem paddingY={2} key={skeleton}>
               <HStack>
                 <Skeleton height={7} width={10} />
@@ -26,9 +25,8 @@ const GameGenreList = () => {
               </HStack>
             </ListItem>
           ))}
-      </List>
-          
-          }
+        </List>
+      )}
 
       {data.map((genre) => (
         <List key={genre.id}>
