@@ -11,7 +11,7 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
-import { IconType } from "react-icons";
+import {  IconType } from "react-icons";
 interface Props {
   platforms: Platform[];
 }
@@ -28,9 +28,14 @@ const PlatformIconsList = ({ platforms }: Props) => {
     web: BsGlobe,
   };
   return (
-    <HStack marginY={1}>
+    <HStack>
       {platforms.map((platform) => (
-        <Icon key={platform.id} color="gray.500" as={IconMap[platform.slug]} />
+        <Icon
+          key={platform.id}
+          fontSize="14px"
+          color="gray.400"
+          as={IconMap[platform.slug]}
+        />
       ))}
     </HStack>
   );
