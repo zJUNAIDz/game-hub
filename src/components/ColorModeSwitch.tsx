@@ -1,15 +1,16 @@
-import { HStack, useColorMode } from "@chakra-ui/react";
-import { BsFillMoonFill, BsSunFill } from "react-icons/bs";
+import { Badge,  useColorMode } from "@chakra-ui/react";
+import { BsFillMoonFill } from "react-icons/bs";
+import {FaSun} from 'react-icons/fa'
 const ColorModeSwitch = () => {
   const { toggleColorMode, colorMode } = useColorMode();
   return (
-    <HStack onClick={toggleColorMode} paddingX={5}>
+    <Badge onClick={toggleColorMode} padding={2} borderRadius={5}>
       {colorMode === "dark" ? (
         <BsFillMoonFill style={{ fontSize: "1.5rem" }} />
       ) : (
-        <BsSunFill style={{ fontSize: "1.5rem" }} />
+        <FaSun style={{ fontSize: "1.5rem" }} />
       )}
-    </HStack>
+    </Badge>
   );
 };
 
