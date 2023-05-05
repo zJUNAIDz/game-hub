@@ -7,28 +7,34 @@ import {
   Skeleton,
   Text,
 } from "@chakra-ui/react";
-import useGenre from "../hooks/useGenre";
+import useGenre, { Genre } from "../hooks/useGenre";
 import getCroppedImageURL from "../services/image-url";
 
-const GameGenreList = () => {
+interface Props {
+  onSelect: (genre: Genre) => void;
+  selectedGenre:Genre | null;
+}
+
+const GameGenreList = ({ onSelect, selectedGenre }: Props) => {
   const skeletonCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const { data, isLoading, error } = useGenre();
+  if (error) return <Text color="red">{error}</Text>;
+  if (isLoading)
+    return (
+      <List>
+        {skeletonCount.map((skeleton) => (
+          <ListItem paddingY={2} key={skeleton}>
+            <HStack>
+              <Skeleton height={7} width={10} />
+              <Skeleton height={7} width="9rem" />
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    );
   return (
     <>
-      {error && <Text color="red">{error}</Text>}
-      {isLoading && (
-        <List>
-          {skeletonCount.map((skeleton) => (
-            <ListItem paddingY={2} key={skeleton}>
-              <HStack>
-                <Skeleton height={7} width={10} />
-                <Skeleton height={7} width="9rem" />
-              </HStack>
-            </ListItem>
-          ))}
-        </List>
-      )}
-
+      {}
       {data.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
@@ -38,8 +44,9 @@ const GameGenreList = () => {
                 borderRadius={8}
                 src={getCroppedImageURL(genre.image_background)}
               />
-              <Text fontWeight="bold">{genre.name}</Text>
-
+              <Button fontWeight={selectedGenre?.id === genre.id ? 'bold': 'normal'} opacity={selectedGenre?.id === genre.id ? 1 : 0.6} onClick={() => onSelect(genre)} variant="link">
+                {genre.name}
+              </Button>
               {/* {genre.name}
               <ListIcon  /> */}
             </HStack>

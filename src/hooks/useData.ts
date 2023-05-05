@@ -1,23 +1,24 @@
 import { ReactNode, useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
+
 
 interface DataResponse<T> {
   count: number;
   results: T[];
 }
-const useData = <T>(endpoint: string) => {
+const useData = <T>(endpoint: string, requestConfig?:AxiosRequestConfig, deps?:unknown[] ) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState<ReactNode>();
   const [isLoading, setLoading] = useState(false);
+  const dependencies = deps?[...deps]:[];
   
   useEffect(() => {
-
     const controller = new AbortController();
     setLoading(true);
 
     apiClient
-      .get<DataResponse<T>>(endpoint, { signal: controller.signal })
+      .get<DataResponse<T>>(endpoint, { ...requestConfig, signal: controller.signal })
       .then((res) => {
         setData(res.data.results);
         setError("");
@@ -28,7 +29,8 @@ const useData = <T>(endpoint: string) => {
         setError(err.message);
       });
     return () => controller.abort();
-  },[]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, dependencies);
 
   return {  data, error, isLoading };
 };
