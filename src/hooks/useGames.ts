@@ -21,8 +21,12 @@ const useGames = (gameQuery: GameQuery) =>
     //changed from platform to parent_platform to fix the playstation platform bug bug...
     {
       params: {
+        // discover:true,
+        // page:80,
+        // page_size:20,
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
       },
     },
     [gameQuery]
