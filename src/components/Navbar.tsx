@@ -10,11 +10,13 @@ const Navbar = ({ onSearchQuery }: Props) => {
   const [searchQuery, SetSearchQuery] = useState("");
   useEffect(() => {
     onSearchQuery(searchQuery);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
   return (
     <HStack padding={2}>
-      <Image borderRadius={5} boxSize="50px" src={logo} />
+      <a href="https://igdb.vercel.app/">
+        <Image borderRadius={5} boxSize="50px" src={logo} />
+      </a>
       <SearchInput
         searchedQuery={searchQuery}
         onSearch={(searchQuery) => {
