@@ -11,11 +11,11 @@ import useGenre, { Genre } from "../hooks/useGenre";
 import getCroppedImageURL from "../services/image-url";
 
 interface Props {
-  onSelect: (genre: Genre) => void;
-  selectedGenre:Genre | null;
+  onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GameGenreList = ({ onSelect, selectedGenre }: Props) => {
+const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const skeletonCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const { data, isLoading, error } = useGenre();
   if (error) return <Text color="red">{error}</Text>;
@@ -44,7 +44,12 @@ const GameGenreList = ({ onSelect, selectedGenre }: Props) => {
                 borderRadius={8}
                 src={getCroppedImageURL(genre.image_background)}
               />
-              <Button fontWeight={selectedGenre?.id === genre.id ? 'bold': 'normal'} opacity={selectedGenre?.id === genre.id ? 1 : 0.6} onClick={() => onSelect(genre)} variant="link">
+              <Button
+                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                opacity={selectedGenre?.id === genre.id ? 1 : 0.9}
+                onClick={() => onSelectGenre(genre)}
+                variant="link"
+              >
                 {genre.name}
               </Button>
               {/* {genre.name}
