@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Menu,
   MenuButton,
@@ -17,27 +18,29 @@ interface Props {
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data } = usePlatforms();
   return (
-    <Menu>
-      <MenuButton as={Button} rightIcon={<FaChevronDown />}>
-        {selectedPlatform ? (
-          <Text>Platform: {selectedPlatform.name}</Text>
-        ) : (
-          <Text>Platform: All</Text>
-        )}
-      </MenuButton>
-      <MenuList>
-        <MenuItem onClick={()=> onSelectPlatform(null)}>All</MenuItem>
-        {data.map((platform) => (
-          <MenuItem
-            onClick={() => onSelectPlatform(platform)}
-            key={platform.id}
-          >
-            {" "}
-            {platform.name}
-          </MenuItem>
-        ))}
-      </MenuList>
-    </Menu>
+    <Box>
+      <Menu>
+        <MenuButton as={Button} rightIcon={<FaChevronDown />}>
+          {selectedPlatform ? (
+            <Text>Platform: {selectedPlatform.name}</Text>
+          ) : (
+            <Text>Platform: All</Text>
+          )}
+        </MenuButton>
+        <MenuList>
+          <MenuItem onClick={() => onSelectPlatform(null)}>All</MenuItem>
+          {data.map((platform) => (
+            <MenuItem
+              onClick={() => onSelectPlatform(platform)}
+              key={platform.id}
+            >
+              {" "}
+              {platform.name}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
+    </Box>
   );
 };
 

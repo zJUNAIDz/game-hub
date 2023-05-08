@@ -15,12 +15,16 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (
-gameQuery: GameQuery
-) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     "/games",
-    { params: { genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id } },
+    //changed from platform to parent_platform to fix the playstation platform bug bug...
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id,
+      },
+    },
     [gameQuery]
   );
 

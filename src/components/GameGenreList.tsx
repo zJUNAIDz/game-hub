@@ -34,7 +34,7 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     );
   return (
     <>
-      {}
+      
       {data.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
@@ -45,6 +45,9 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 src={getCroppedImageURL(genre.image_background)}
               />
               <Button
+                //important for correct alignment of texts
+                whiteSpace="normal"
+                textAlign="left"
                 fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
                 opacity={selectedGenre?.id === genre.id ? 1 : 0.9}
                 onClick={() => onSelectGenre(genre)}
@@ -52,8 +55,6 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
               >
                 {genre.name}
               </Button>
-              {/* {genre.name}
-              <ListIcon  /> */}
             </HStack>
           </ListItem>
         </List>
