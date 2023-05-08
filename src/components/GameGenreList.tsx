@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -34,6 +35,7 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     );
   return (
     <>
+    <Heading fontSize='2xl' marginBottom={3}>Genres</Heading>
       {data.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
