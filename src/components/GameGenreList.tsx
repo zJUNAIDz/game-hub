@@ -40,6 +40,7 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
             <HStack>
               <Image
                 boxSize="28px"
+                objectFit="cover"
                 borderRadius={8}
                 src={getCroppedImageURL(genre.image_background)}
               />
