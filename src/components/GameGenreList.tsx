@@ -34,7 +34,6 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     );
   return (
     <>
-      
       {data.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
