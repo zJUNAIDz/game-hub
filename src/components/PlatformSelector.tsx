@@ -18,7 +18,7 @@ interface Props {
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data } = usePlatforms();
   return (
-    <Box>
+    <Box marginRight={5}>
       <Menu>
         <MenuButton as={Button} rightIcon={<FaChevronDown />}>
           {selectedPlatform ? (
