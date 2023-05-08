@@ -17,7 +17,7 @@ const GameGrid = ({ gameQuery }: Props) => {
   if (error) return <Text colorScheme="red">{error}</Text>;
   if (isLoading)
     return (
-      <SimpleGrid columns={{ sm: 1, md: 3, lg: 4 }} spacing={1}>
+      <SimpleGrid columns={{ sm: 1, md: 3, lg: 3, xl: 4 }} spacing={5}>
         {skeleton.map((x) => (
           <GameCardContainer key={x}>
             <GameCardSkeleton />
@@ -28,7 +28,7 @@ const GameGrid = ({ gameQuery }: Props) => {
   return (
     <>
       {/* {(selectedGenre && !isLoading) ? <Badge marginBottom='1rem'>Genre: {selectedGenre?.name}</Badge> : <Badge marginBottom='1rem'>Home</Badge>} */}
-      <SimpleGrid columns={{ sm: 1, md: 3, lg: 4 }} spacing={2}>
+      <SimpleGrid columns={{ sm: 1, md: 3, lg: 3, xl: 4 }} spacing={5}>
         {data.map((game) => (
           <GameCardContainer key={game.id}>
             <GameCard game={game} />
