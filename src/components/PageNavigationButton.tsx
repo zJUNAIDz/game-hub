@@ -1,5 +1,4 @@
 import { Badge, HStack, IconButton } from "@chakra-ui/react";
-import { useEffect } from "react";
 import {
   BsFillArrowLeftSquareFill,
   BsFillArrowRightSquareFill,
@@ -16,9 +15,9 @@ const PageNavigationButton = ({
   onClick,
   currentPageNumber,
 }: Props) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPageNumber]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [currentPageNumber]);
   if (!previous) currentPageNumber = 1;
   return (
     <HStack justifyContent="center" margin={2}>

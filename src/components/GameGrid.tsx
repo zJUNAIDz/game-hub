@@ -40,7 +40,10 @@ const GameGrid = ({ gameQuery, onPageChange }: Props) => {
         currentPageNumber={gameQuery.page}
         next={next}
         previous={previous}
-        onClick={(pageNumber) => onPageChange(pageNumber)}
+        onClick={(pageNumber) => {
+          onPageChange(pageNumber);
+          window.scrollTo(0,0)
+        }}
       />
     </>
   );
