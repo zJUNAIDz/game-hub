@@ -14,6 +14,7 @@ export interface GameQuery {
   platform: Platform | null;
   sortOrder: string;
   search: string;
+  page:number;
 }
 const App = () => {
   // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
@@ -67,7 +68,7 @@ const App = () => {
           />
         </Flex>
 
-        <GameGrid gameQuery={gameQuery} />
+        <GameGrid onPageChange={(pagNumber) => setGameQuery({...gameQuery, page:pagNumber})} gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );

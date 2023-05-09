@@ -23,7 +23,7 @@ const useGames = (gameQuery: GameQuery) =>
     {
       params: {
         // discover:true,
-        // page:80,
+        page: gameQuery.page,
         // page_size:20,
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,

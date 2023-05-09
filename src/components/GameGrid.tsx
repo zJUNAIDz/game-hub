@@ -7,11 +7,12 @@ import PageNavigationButton from "./PageNavigationButton";
 import { GameQuery } from "../App";
 interface Props {
   gameQuery: GameQuery;
+  onPageChange: (page: number) => void;
   // selectedGenre: Genre | null;
   // selectedPlatform: Platform | null;
 }
 
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = ({ gameQuery, onPageChange }: Props) => {
   const { data, next, previous, error, isLoading } = useGames(gameQuery);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   if (error) return <Text colorScheme="red">{error}</Text>;
@@ -36,9 +37,10 @@ const GameGrid = ({ gameQuery }: Props) => {
         ))}
       </SimpleGrid>
       <PageNavigationButton
+        currentPageNumber={gameQuery.page}
         next={next}
         previous={previous}
-        onClick={(um) => console.log(um)}
+        onClick={(pageNumber) => onPageChange(pageNumber)}
       />
     </>
   );
