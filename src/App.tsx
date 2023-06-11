@@ -16,6 +16,7 @@ export interface GameQuery {
   search: string;
   page:number;
 }
+
 const App = () => {
   // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
