@@ -1,3 +1,5 @@
+// SORT button dynamics not impleented yet
+
 import {
   Box,
   Button,
@@ -12,7 +14,6 @@ interface Props {
   onSelectSortOrder: (sortOrder: string) => void;
   selectedSortOrder: string;
 }
-
 const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
   const sortOptions = [
     { value: "name", label: "Name" },
@@ -22,14 +23,16 @@ const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
     { value: "-rating", label: "Average Rating" },
     { value: "--added", label: "Popularity" },
   ];
-  const currentSortOrder = sortOptions.find(
-    (order) => order.label === selectedSortOrder
-  );
+  // const currentSortOrder = sortOptions.find(
+  //   (order) => order.label === selectedSortOrder
+  // );
+  console.log(selectedSortOrder);
+  
   return (
     <Box>
       <Menu>
         <MenuButton as={Button} rightIcon={<FaChevronDown />}>
-          Ordered by: {currentSortOrder ? currentSortOrder.label : "Relevance"}
+          Ordered by: {selectedSortOrder ? selectedSortOrder : "Relevance"}
         </MenuButton>
         <MenuList>
           {sortOptions.map((option) => (
