@@ -23,16 +23,16 @@ const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
     { value: "-rating", label: "Average Rating" },
     { value: "--added", label: "Popularity" },
   ];
-  // const currentSortOrder = sortOptions.find(
-  //   (order) => order.label === selectedSortOrder
-  // );
+  const currentSortOrder = sortOptions.find(
+    (order) => order.value === selectedSortOrder
+  );
   console.log(selectedSortOrder);
   
   return (
     <Box>
       <Menu>
         <MenuButton as={Button} rightIcon={<FaChevronDown />}>
-          Ordered by: {selectedSortOrder ? selectedSortOrder : "Relevance"}
+          Ordered by: {currentSortOrder?.label || "Relevance"}
         </MenuButton>
         <MenuList>
           {sortOptions.map((option) => (
