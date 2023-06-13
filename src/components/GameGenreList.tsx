@@ -19,7 +19,7 @@ interface Props {
 const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const skeletonCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const { data, isLoading, error } = useGenre();
-  if (error) return <Text color="red">{error}</Text>;
+  if (error) return <Text color="red"></Text>;
   if (isLoading)
     return (
       <List>
@@ -36,7 +36,7 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   return (
     <>
     <Heading fontSize='2xl' marginBottom={3}>Genres</Heading>
-      {data.map((genre) => (
+      {data?.results.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
             <HStack>

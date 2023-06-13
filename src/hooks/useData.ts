@@ -2,20 +2,19 @@ import { ReactNode, useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { AxiosRequestConfig, CanceledError } from "axios";
 
-interface DataResponse<T> {
+export interface DataResponse<T> {
   count: number;
-  next: string;
-  previous: string;
+  // next: string;
+  // previous: string;
   results: T[];
 }
-const useData = <T>(
+const  useData = <T>(
   endpoint: string,
   requestConfig?: AxiosRequestConfig,
   deps?: unknown[]
 ) => {
   const [data, setData] = useState<T[]>([]);
-  const [next, setNext] = useState("");
-  const [previous, setPrevious] = useState("");
+
   const [error, setError] = useState<ReactNode>();
   const [isLoading, setLoading] = useState(false);
   const dependencies = deps ? [...deps] : []; // Must have used it directly but anyways..
@@ -31,8 +30,6 @@ const useData = <T>(
       })
       .then((res) => {
         setData(res.data.results);
-        setNext(res.data.next);
-        setPrevious(res.data.previous);
         setError("");
         setLoading(false);
       })
@@ -44,7 +41,7 @@ const useData = <T>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 
-  return { data, next, previous, error, isLoading };
+  return { data, error, isLoading };
 };
 
 export default useData;

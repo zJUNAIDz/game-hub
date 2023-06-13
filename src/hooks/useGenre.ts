@@ -1,15 +1,27 @@
-import useData from "./useData";
-interface Games{
-  id:number;
-  name:string;
+import { useQuery } from "react-query";
+// import useData from "./useData";
+import apiClient from "../services/api-client";
+import { DataResponse } from "./useData";
+import genres from '../data/cached-genre'
+interface Games {
+  id: number;
+  name: string;
 }
-export interface Genre{
-  id:number;
-  name:string;
-  image_background:string;
-  games:Games[]
+export interface Genre {
+  id: number;
+  name: string;
+  image_background: string;
+  games: Games[];
 }
 
-const useGenre = () => useData<Genre>('/genres');
+// const useGenre = () => useData<Genre>('/genres');
+const useGenre = () =>
+  useQuery({
+    queryKey: ["genres"],
+    queryFn: () =>
+      apiClient.get<DataResponse<Genre>>("/genres").then((res) => res.data),
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    initialData: genres,
+  });
 
 export default useGenre;
