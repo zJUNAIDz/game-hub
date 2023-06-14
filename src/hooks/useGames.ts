@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import { GameQuery } from "../App";
 import ApiClient, { DataResponse } from "../services/api-client";
 
@@ -18,20 +18,22 @@ export interface Game {
 }
 const apiClient = new ApiClient<Game>("/games");
 const useGames = (gameQuery: GameQuery) =>
-  useQuery<DataResponse<Game>, Error>({
+  useInfiniteQuery<DataResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
-    queryFn: () =>
+    queryFn: ({pageParam = 1}) =>
       apiClient.getAll({
         params: {
-          // discover:true,
-          page: gameQuery.page,
-          // page_size:20,
+          discover:true,
+          page: pageParam,
+          page_size:30,
           genres: gameQuery.genre?.id,
           parent_platforms: gameQuery.platform?.id,
           ordering: gameQuery.sortOrder,
           search: gameQuery.search,
         },
+      
       }),
+      getNextPageParam:(lastPage, allPages)=> lastPage.next ? allPages.length + 1 : undefined,
   });
 
 //params:

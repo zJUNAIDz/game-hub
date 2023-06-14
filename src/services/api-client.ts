@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig } from "axios";
 export interface DataResponse<T> {
   count: number;
-  // next: string;
-  // previous: string;
+  next: string | null;
+  previous: string | null;
   results: T[];
 }
 const axiosInstance = axios.create({
@@ -13,13 +13,14 @@ const axiosInstance = axios.create({
   },
 });
 
-class ApiClient <T> {
+class ApiClient<T> {
   endpoint: string;
   constructor(endpoint: string) {
     this.endpoint = endpoint;
   }
-  getAll=(config:AxiosRequestConfig) => 
-    axiosInstance.get<DataResponse<T>>(this.endpoint,config).then((res) => res.data);
-  
+  getAll = (config: AxiosRequestConfig) =>
+    axiosInstance
+      .get<DataResponse<T>>(this.endpoint, config)
+      .then((res) => res.data);
 }
 export default ApiClient;
