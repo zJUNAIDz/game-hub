@@ -41,7 +41,6 @@ const GameGrid = ({ gameQuery }: Props) => {
     );
   return (
     <Box padding={10}>
-      {/* {(selectedGenre && !isLoading) ? <Badge marginBottom='1rem'>Genre: {selectedGenre?.name}</Badge> : <Badge marginBottom='1rem'>Home</Badge>} */}
       <InfiniteScroll
       dataLength={fetchedGamesCount}
       hasMore={!!hasNextPage}
@@ -60,26 +59,11 @@ const GameGrid = ({ gameQuery }: Props) => {
               ))}
             </React.Fragment>
           ))}
-          {/* {data?.results.map((game) => (
-          <GameCardContainer key={game.id}>
-          <GameCard game={game} />
-        </GameCardContainer>
-        ))} */}
+
         </SimpleGrid>
       </InfiniteScroll>
 
-      {/* {hasNextPage && (
-        <Button onClick={() => fetchNextPage()}>
-          {isFetchingNextPage ? "Loading" : "Load More"}
-        </Button>
-      )} */}
-      {/* <PageNavigationButton
-        currentPageNumber={gameQuery.page}
-        onClick={(pageNumber) => {
-          onPageChange(pageNumber);
-          window.scrollTo(0, 0);
-        }}
-      /> */}
+
     </Box>
   );
 };

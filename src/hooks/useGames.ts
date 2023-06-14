@@ -6,7 +6,6 @@ export interface Platform {
   id: number;
   name: string;
   slug: string;
-  // image: string;
 }
 export interface Game {
   id: number;
@@ -35,32 +34,5 @@ const useGames = (gameQuery: GameQuery) =>
       }),
       getNextPageParam:(lastPage, allPages)=> lastPage.next ? allPages.length + 1 : undefined,
   });
-
-//params:
-// params: {
-//   // discover:true,
-//   page: gameQuery.page,
-//   // page_size:20,
-//   genres: gameQuery.genre?.id,
-//   parent_platforms: gameQuery.platform?.id,
-//   ordering: gameQuery.sortOrder,
-//   search: gameQuery.search,
-// }
-// useData<Game>(
-//   "/games",
-//   //changed from platform to parent_platform to fix the playstation platform bug bug...
-//   {
-//     params: {
-//       // discover:true,
-//       page: gameQuery.page,
-//       // page_size:20,
-//       genres: gameQuery.genre?.id,
-//       parent_platforms: gameQuery.platform?.id,
-//       ordering: gameQuery.sortOrder,
-//       search: gameQuery.search,
-//     },
-//   },
-//   [gameQuery]
-// );
 
 export default useGames;
