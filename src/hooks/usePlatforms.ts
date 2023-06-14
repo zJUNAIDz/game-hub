@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
-import  { DataResponse } from "./useData";
-import apiClient from "../services/api-client";
+import apiClient, { DataResponse } from "../services/api-client";
 import { Platform } from "./useGames";
 // import cachedPlatforms from "../data/cached-platforms";
 

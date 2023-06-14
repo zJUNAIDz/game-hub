@@ -1,7 +1,6 @@
 import { useQuery } from "react-query";
 import { GameQuery } from "../App";
-import { DataResponse } from "./useData";
-import apiClient from "../services/api-client";
+import apiClient, { DataResponse } from "../services/api-client";
 
 export interface Platform {
   id: number;

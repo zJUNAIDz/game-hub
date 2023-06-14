@@ -2,12 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { AxiosRequestConfig, CanceledError } from "axios";
 
-export interface DataResponse<T> {
-  count: number;
-  // next: string;
-  // previous: string;
-  results: T[];
-}
+
 const  useData = <T>(
   endpoint: string,
   requestConfig?: AxiosRequestConfig,

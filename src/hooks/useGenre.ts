@@ -1,7 +1,6 @@
 import { useQuery } from "react-query";
 // import useData from "./useData";
-import apiClient from "../services/api-client";
-import { DataResponse } from "./useData";
+import apiClient, { DataResponse } from "../services/api-client";
 import genres from '../data/cached-genre'
 interface Games {
   id: number;
