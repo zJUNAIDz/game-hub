@@ -24,7 +24,7 @@ const App = () => {
   // );
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   return (
-    <Grid
+    <Grid 
       templateAreas={{
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`, //1024px
@@ -44,7 +44,7 @@ const App = () => {
 
       <Show above="lg">
         <GridItem paddingX={5} area={"aside"}>
-          <GameGenreList
+          <GameGenreList 
             selectedGenre={gameQuery.genre}
             onSelectGenre={(genre) =>
               setGameQuery({ ...gameQuery, genre: genre })

@@ -12,7 +12,7 @@ import useGenre, { Genre } from "../hooks/useGenre";
 import getCroppedImageURL from "../services/image-url";
 
 interface Props {
-  onSelectGenre: (genre: Genre) => void;
+  onSelectGenre: (genre: Genre | null) => void;
   selectedGenre: Genre | null;
 }
 
@@ -36,6 +36,8 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   return (
     <>
     <Heading fontSize='2xl' marginBottom={3}>Genres</Heading>
+    <Image src=""/>
+    <Button variant='link'marginLeft={7} opacity={selectedGenre ? 0.6 :1} onClick={()=> onSelectGenre(null)}>All</Button>
       {data?.results.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
