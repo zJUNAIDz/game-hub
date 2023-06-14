@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import apiClient, { DataResponse } from "../services/api-client";
+import ApiClient from "../services/api-client";
 // import cachedPlatforms from "../data/cached-platforms";
 export interface Platform {
   id: number;
@@ -7,13 +7,16 @@ export interface Platform {
   slug: string;
   // image: string;
 }
-
+//platform/lists/parents provides the parent platform name instead of various versions of same ..like ps 1 ps 2 ❌ Ps✅
+const apiClient = new ApiClient("/platforms/lists/parents");
 // const usePlatforms = () => useData<Platform>("/platforms/lists/parents");
-const usePlatforms = () => useQuery({
-  queryKey:['platforms'],
-  queryFn:()=> apiClient.get<DataResponse<Platform>>('/platforms/lists/parents').then(res => res.data), //platform/lists/parents provides the parent platform name instead of various versions of same ..like ps 1 ps 2 ❌ Ps✅
-  staleTime:24*60*60*1000,//24 hours
-  // initialData:{count:platforms.length, results: cachedPlatforms}
-})
+const usePlatforms = () =>
+  useQuery({
+    queryKey: ["platforms"],
+    queryFn: apiClient.getAll,
+
+    staleTime: 24 * 60 * 60 * 1000, //24 hours
+    // initialData:{count:platforms.length, results: cachedPlatforms}
+  });
 
 export default usePlatforms;
