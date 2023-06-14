@@ -25,7 +25,7 @@ const useGames = (gameQuery: GameQuery) =>
         params: {
           discover:true,
           page: pageParam,
-          page_size:30,
+          page_size:20,
           genres: gameQuery.genre?.id,
           parent_platforms: gameQuery.platform?.id,
           ordering: gameQuery.sortOrder,
