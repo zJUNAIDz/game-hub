@@ -9,8 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa";
 // import { Platform } from "../hooks/useGames"
-import usePlatforms from "../hooks/usePlatforms";
-import { Platform } from "../hooks/useGames";
+import usePlatforms, { Platform } from "../hooks/usePlatforms";
 interface Props {
   onSelectPlatform: (platform: Platform | null) => void;
   selectedPlatform: Platform | null;

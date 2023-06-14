@@ -1,10 +1,10 @@
-import useGames from "../hooks/useGames";
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import GameCard from "./GameCard";
-import GameCardSkeleton from "./GameCardSkeleton";
-import GameCardContainer from "./GameCardContainer";
-import PageNavigationButton from "./PageNavigationButton";
 import { GameQuery } from "../App";
+import useGames from "../hooks/useGames";
+import GameCard from "./GameCard";
+import GameCardContainer from "./GameCardContainer";
+import GameCardSkeleton from "./GameCardSkeleton";
+import PageNavigationButton from "./PageNavigationButton";
 interface Props {
   gameQuery: GameQuery;
   onPageChange: (page: number) => void;

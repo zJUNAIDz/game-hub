@@ -1,8 +1,12 @@
 import { useQuery } from "react-query";
 import apiClient, { DataResponse } from "../services/api-client";
-import { Platform } from "./useGames";
 // import cachedPlatforms from "../data/cached-platforms";
-
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+  // image: string;
+}
 
 // const usePlatforms = () => useData<Platform>("/platforms/lists/parents");
 const usePlatforms = () => useQuery({
