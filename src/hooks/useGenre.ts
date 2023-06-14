@@ -12,7 +12,7 @@ export interface Genre {
   image_background: string;
   games: Games[];
 }
-const apiClient = new ApiClient('/genres');
+const apiClient = new ApiClient<Genre>('/genres');
 // const useGenre = () => useData<Genre>('/genres');
 const useGenre = () =>
   useQuery({

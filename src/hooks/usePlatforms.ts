@@ -8,7 +8,7 @@ export interface Platform {
   // image: string;
 }
 //platform/lists/parents provides the parent platform name instead of various versions of same ..like ps 1 ps 2 ❌ Ps✅
-const apiClient = new ApiClient("/platforms/lists/parents");
+const apiClient = new ApiClient<Platform>("/platforms/lists/parents");
 // const usePlatforms = () => useData<Platform>("/platforms/lists/parents");
 const usePlatforms = () =>
   useQuery({
