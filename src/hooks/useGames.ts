@@ -25,10 +25,10 @@ const useGames = (gameQuery: GameQuery) =>
           discover: true,
           page: pageParam,
           page_size: 20,
-          genres: gameQuery.genre?.id,
-          parent_platforms: gameQuery.platform?.id,
+          genres: gameQuery.genreId,
+          parent_platforms: gameQuery.platformId  ,
           ordering: gameQuery.sortOrder,
-          search: gameQuery.search,
+          search: gameQuery?.search,
         },
       }),
     getNextPageParam: (lastPage, allPages) =>

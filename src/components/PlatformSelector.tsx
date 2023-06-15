@@ -12,23 +12,24 @@ import { FaChevronDown } from "react-icons/fa";
 import usePlatforms, { Platform } from "../hooks/usePlatforms";
 interface Props {
   onSelectPlatform: (platform: Platform | null) => void;
-  selectedPlatform: Platform | null;
+  selectedPlatformId: number | null;
 }
-const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
-  const { data } = usePlatforms();
+const PlatformSelector = ({ onSelectPlatform, selectedPlatformId }: Props) => {
+  const { data:platforms } = usePlatforms();
+  const platform = platforms?.results.find(p => p.id === selectedPlatformId )
   return (
     <Box marginRight={5}>
       <Menu>
         <MenuButton as={Button} rightIcon={<FaChevronDown />}>
-          {selectedPlatform ? (
-            <Text>Platform: {selectedPlatform.name}</Text>
+          {selectedPlatformId ? (
+            <Text>Platform: {platform?.name}</Text>
           ) : (
             <Text>Platform: All</Text>
           )}
         </MenuButton>
         <MenuList>
           <MenuItem onClick={() => onSelectPlatform(null)}>All</MenuItem>
-          {data?.results.map((platform) => (
+          {platforms?.results.map((platform) => (
             <MenuItem
               onClick={() => onSelectPlatform(platform)}
               key={platform.id}

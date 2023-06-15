@@ -8,15 +8,15 @@ import {
   Skeleton,
   Text,
 } from "@chakra-ui/react";
-import useGenre, { Genre } from "../hooks/useGenre";
+import useGenre from "../hooks/useGenre";
 import getCroppedImageURL from "../services/image-url";
 
 interface Props {
-  onSelectGenre: (genre: Genre | null) => void;
-  selectedGenre: Genre | null;
+  onSelectGenreId: (genreId: number | null) => void;
+  selectedGenreId: number | null;
 }
 
-const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
+const GameGenreList = ({ onSelectGenreId, selectedGenreId }: Props) => {
   const skeletonCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const { data, isLoading, error } = useGenre();
   if (error) return <Text color="red"></Text>;
@@ -37,7 +37,7 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     <>
     <Heading fontSize='2xl' marginBottom={3}>Genres</Heading>
     <Image src=""/>
-    <Button variant='link'marginLeft={7} opacity={selectedGenre ? 0.6 :1} onClick={()=> onSelectGenre(null)}>All</Button>
+    <Button variant='link'marginLeft={7} opacity={selectedGenreId ? 0.6 :1} onClick={()=> onSelectGenreId(null)}>All</Button>
       {data?.results.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
@@ -52,9 +52,9 @@ const GameGenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 //important for correct alignment of texts
                 whiteSpace="normal"
                 textAlign="left"
-                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
-                opacity={selectedGenre?.id === genre.id ? 1 : 0.9}
-                onClick={() => onSelectGenre(genre)}
+                fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
+                opacity={selectedGenreId === genre.id ? 1 : 0.9}
+                onClick={() => onSelectGenreId(genre.id)}
                 variant="link"
               >
                 {genre.name}
