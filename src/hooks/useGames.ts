@@ -1,4 +1,4 @@
-import ms from 'ms';
+import ms from "ms";
 import { useInfiniteQuery } from "react-query";
 import { GameQuery } from "../App";
 import ApiClient, { DataResponse } from "../services/api-client";
@@ -26,14 +26,14 @@ const useGames = (gameQuery: GameQuery) =>
           page: pageParam,
           page_size: 20,
           genres: gameQuery.genreId,
-          parent_platforms: gameQuery.platformId  ,
+          parent_platforms: gameQuery.platformId,
           ordering: gameQuery.sortOrder,
           search: gameQuery?.search,
         },
       }),
     getNextPageParam: (lastPage, allPages) =>
       lastPage.next ? allPages.length + 1 : undefined,
-    staleTime: ms('24h'), //24hours
+    staleTime: ms("24h"), //24hours
   });
 
 export default useGames;
