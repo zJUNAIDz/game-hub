@@ -8,7 +8,7 @@ import {
   Skeleton,
   Text,
 } from "@chakra-ui/react";
-import useGenre from "../hooks/useGenre";
+import useGenres from "../hooks/useGenres";
 import getCroppedImageURL from "../services/image-url";
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 
 const GameGenreList = ({ onSelectGenreId, selectedGenreId }: Props) => {
   const skeletonCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const { data, isLoading, error } = useGenre();
+  const { data, isLoading, error } = useGenres();
   if (error) return <Text color="red"></Text>;
   if (isLoading)
     return (
