@@ -10,13 +10,14 @@ import {
 import { FaChevronDown } from "react-icons/fa";
 // import { Platform } from "../hooks/useGames"
 import usePlatforms, { Platform } from "../hooks/usePlatforms";
+import usePlatform from "../hooks/usePlatform";
 interface Props {
   onSelectPlatform: (platform: Platform | null) => void;
   selectedPlatformId: number | null;
 }
 const PlatformSelector = ({ onSelectPlatform, selectedPlatformId }: Props) => {
   const { data:platforms } = usePlatforms();
-  const platform = platforms?.results.find(p => p.id === selectedPlatformId )
+  const platform = usePlatform(selectedPlatformId)
   return (
     <Box marginRight={5}>
       <Menu>
