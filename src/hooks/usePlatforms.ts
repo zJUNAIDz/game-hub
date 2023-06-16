@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import ApiClient from "../services/api-client";
-// import cachedPlatforms from "../data/cached-platforms";
+import cachedPlatforms from "../data/cached-platforms";
 export interface Platform {
   id: number;
   name: string;
@@ -16,7 +16,7 @@ const usePlatforms = () =>
     queryFn: apiClient.getAll,
 
     staleTime: 24 * 60 * 60 * 1000, //24 hours
-    // initialData:{count:platforms.length, results: cachedPlatforms}
+    initialData:cachedPlatforms
   });
 
 export default usePlatforms;
