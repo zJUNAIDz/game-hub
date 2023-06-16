@@ -1,5 +1,5 @@
+import ms from 'ms';
 import { useQuery } from "react-query";
-// import useData from "./useData";
 import genres from '../data/cached-genre';
 import ApiClient from "../services/api-client";
 interface Games {
@@ -18,8 +18,8 @@ const useGenres= () =>
   useQuery({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
-    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    staleTime: ms('24h'), // 24 hours
     initialData: genres,
-  });
+  }); 
 
 export default useGenres;
