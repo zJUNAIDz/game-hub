@@ -7,21 +7,17 @@ import Navbar from "./components/Navbar";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 
-export interface GameQuery {
-  // genre: Genre | null;
-  genreId:number | null;
-  platformId: number | null;
-  sortOrder: string;
-  search?: string;
-  page:number;
-}
+
 
 const App = () => {
   // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
   //   null
   // );
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+  // const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
+
+  
   return (
     <Grid 
       templateAreas={{
