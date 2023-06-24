@@ -9,15 +9,20 @@ import {
 } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa";
 // import { Platform } from "../hooks/useGames"
-import usePlatforms, { Platform } from "../hooks/usePlatforms";
 import usePlatform from "../hooks/usePlatform";
-interface Props {
-  onSelectPlatform: (platform: Platform | null) => void;
-  selectedPlatformId: number | null;
-}
-const PlatformSelector = ({ onSelectPlatform, selectedPlatformId }: Props) => {
-  const { data:platforms } = usePlatforms();
-  const platform = usePlatform(selectedPlatformId)
+import usePlatforms from "../hooks/usePlatforms";
+import useGameQueryStore from "../store";
+
+const PlatformSelector = () => {
+  const selectedPlatformId = useGameQueryStore(
+    (select) => select.gameQuery.platformId
+  );
+  const setSelectedPlatformId = useGameQueryStore(
+    (select) => select.setPlatformId
+  );
+
+  const { data: platforms } = usePlatforms();
+  const platform = usePlatform(selectedPlatformId);
   return (
     <Box marginRight={5}>
       <Menu>
@@ -29,10 +34,10 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatformId }: Props) => {
           )}
         </MenuButton>
         <MenuList>
-          <MenuItem onClick={() => onSelectPlatform(null)}>All</MenuItem>
+          <MenuItem onClick={() => setSelectedPlatformId(null)}>All</MenuItem>
           {platforms?.results.map((platform) => (
             <MenuItem
-              onClick={() => onSelectPlatform(platform)}
+              onClick={() => setSelectedPlatformId(platform.id)}
               key={platform.id}
             >
               {platform.name}

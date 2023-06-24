@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import cachedPlatforms from "../data/cached-platforms";
 import ApiClient from "../services/api-client";
 export interface Platform {
-  id: number;
+  id: number | null;
   name: string;
   slug: string;
   // image: string;

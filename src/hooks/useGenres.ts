@@ -7,7 +7,7 @@ interface Games {
   name: string;
 }
 export interface Genre {
-  id: number;
+  id: number | null;
   name: string;
   image_background: string;
   games: Games[];

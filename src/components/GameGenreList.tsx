@@ -10,13 +10,13 @@ import {
 } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageURL from "../services/image-url";
+import useGameQueryStore from "../store";
 
-interface Props {
-  onSelectGenreId: (genreId: number | null) => void;
-  selectedGenreId: number | null;
-}
 
-const GameGenreList = ({ onSelectGenreId, selectedGenreId }: Props) => {
+
+const GameGenreList = () => {
+ const selectedGenreId = useGameQueryStore(select => select.gameQuery.genreId);
+ const setSelectedGenreId = useGameQueryStore(select => select.setGenreId)
   const skeletonCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const { data, isLoading, error } = useGenres();
   if (error) return <Text color="red"></Text>;
@@ -37,7 +37,7 @@ const GameGenreList = ({ onSelectGenreId, selectedGenreId }: Props) => {
     <>
     <Heading fontSize='2xl' marginBottom={3}>Genres</Heading>
     <Image src=""/>
-    <Button variant='link'marginLeft={7} opacity={selectedGenreId ? 0.6 :1} onClick={()=> onSelectGenreId(null)}>All</Button>
+    <Button variant='link'marginLeft={7} opacity={selectedGenreId ? 0.6 :1} onClick={()=> setSelectedGenreId(null)}>All</Button>
       {data?.results.map((genre) => (
         <List key={genre.id}>
           <ListItem paddingY={2}>
@@ -54,7 +54,7 @@ const GameGenreList = ({ onSelectGenreId, selectedGenreId }: Props) => {
                 textAlign="left"
                 fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
                 opacity={selectedGenreId === genre.id ? 1 : 0.9}
-                onClick={() => onSelectGenreId(genre.id)}
+                onClick={() => setSelectedGenreId(genre.id)}
                 variant="link"
               >
                 {genre.name}
