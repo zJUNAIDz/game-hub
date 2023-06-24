@@ -1,6 +1,6 @@
-import ms from 'ms';
+import ms from "ms";
 import { useQuery } from "react-query";
-import genres from '../data/cached-genre';
+import genres from "../data/cached-genre";
 import ApiClient from "../services/api-client";
 interface Games {
   id: number;
@@ -12,14 +12,14 @@ export interface Genre {
   image_background: string;
   games: Games[];
 }
-const apiClient = new ApiClient<Genre>('/genres');
+const apiClient = new ApiClient<Genre>("/genres");
 // const useGenre = () => useData<Genre>('/genres');
-const useGenres= () =>
+const useGenres = () =>
   useQuery({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
-    staleTime: ms('24h'), // 24 hours
+    staleTime: ms("24h"), // 24 hours
     initialData: genres,
-  }); 
+  });
 
 export default useGenres;

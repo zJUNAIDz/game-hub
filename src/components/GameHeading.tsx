@@ -6,8 +6,8 @@ import useGameQueryStore from "../store";
 
 const GameHeading = () => {
   // const [heading, setHeading] = useState("Games");
-  const genreId = useGameQueryStore(select => select.gameQuery.genreId);
-  const platformId = useGameQueryStore(select => select.gameQuery.platformId);
+  const genreId = useGameQueryStore((select) => select.gameQuery.genreId);
+  const platformId = useGameQueryStore((select) => select.gameQuery.platformId);
   const genre = useGenre(genreId);
   const platform = usePlatform(platformId);
   const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;

@@ -11,11 +11,13 @@ import {
 import { FaChevronDown } from "react-icons/fa";
 import useGameQueryStore from "../store";
 
-
 const SortSelector = () => {
-
-const selectedSortOrder = useGameQueryStore(select => select.gameQuery.sortOrder);
-const setSelectedSortOrder = useGameQueryStore(select => select.setSortOrder);
+  const selectedSortOrder = useGameQueryStore(
+    (select) => select.gameQuery.sortOrder
+  );
+  const setSelectedSortOrder = useGameQueryStore(
+    (select) => select.setSortOrder
+  );
 
   const sortOptions = [
     { value: "name", label: "Name" },
@@ -29,7 +31,7 @@ const setSelectedSortOrder = useGameQueryStore(select => select.setSortOrder);
     (order) => order.value === selectedSortOrder
   );
   console.log(selectedSortOrder);
-  
+
   return (
     <Box>
       <Menu>

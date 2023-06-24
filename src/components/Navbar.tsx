@@ -9,7 +9,7 @@ const Navbar = () => {
       <a href="https://igdb.vercel.app/">
         <Image borderRadius={5} boxSize="50px" src={logo} />
       </a>
-      <SearchInput/>
+      <SearchInput />
       <ColorModeSwitch />
     </HStack>
   );

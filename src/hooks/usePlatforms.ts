@@ -1,4 +1,4 @@
-import ms from 'ms';
+import ms from "ms";
 import { useQuery } from "react-query";
 import cachedPlatforms from "../data/cached-platforms";
 import ApiClient from "../services/api-client";
@@ -16,8 +16,8 @@ const usePlatforms = () =>
     queryKey: ["platforms"],
     queryFn: apiClient.getAll,
 
-    staleTime: ms('24h'), //24 hours
-    initialData:cachedPlatforms
+    staleTime: ms("24h"), //24 hours
+    initialData: cachedPlatforms,
   });
 
 export default usePlatforms;

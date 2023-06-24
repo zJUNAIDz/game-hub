@@ -6,8 +6,6 @@ import Navbar from "./components/Navbar";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 
-
-
 const App = () => {
   // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
@@ -15,10 +13,8 @@ const App = () => {
   // );
   // const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
-
-
   return (
-    <Grid 
+    <Grid
       templateAreas={{
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`, //1024px
@@ -29,7 +25,7 @@ const App = () => {
       }}
     >
       <GridItem area={"nav"}>
-        <Navbar/>
+        <Navbar />
       </GridItem>
 
       <Show above="lg">
@@ -38,13 +34,13 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <GameHeading/>
+        <GameHeading />
         <Flex marginBottom={7}>
-          <PlatformSelector/>
-          <SortSelector/>
+          <PlatformSelector />
+          <SortSelector />
         </Flex>
 
-        <GameGrid/>
+        <GameGrid />
       </GridItem>
     </Grid>
   );
