@@ -1,10 +1,9 @@
-import { Grid, Show, GridItem, Flex } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import GameGenreList from "../components/GameGenreList";
 import GameGrid from "../components/GameGrid";
 import GameHeading from "../components/GameHeading";
 import PlatformSelector from "../components/PlatformSelector";
-import SortSelector from "../components/SortSelector";
-import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
