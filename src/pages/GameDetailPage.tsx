@@ -1,10 +1,8 @@
-import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import DefinitionItem from "../components/DefinitionItem";
 import ExpandableText from "../components/ExpandableText";
-import useGame from "../hooks/useGame";
-import CriticScore from "../components/CriticScore";
 import GameAttributes from "../components/GameAttributes";
+import useGame from "../hooks/useGame";
 const GameDetailPage = () => {
   const { slug } = useParams();
   const { data: game, isLoading, error } = useGame(slug || "no-such-game");
