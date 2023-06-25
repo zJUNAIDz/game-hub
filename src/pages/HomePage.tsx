@@ -27,7 +27,7 @@ const HomePage = () => {
         <GameHeading />
         <Flex marginBottom={7}>
           <PlatformSelector />
-          <SortSelector />
+          {/* <SortSelector /> // this components is causing to show explicit games so gotta remove it for a while */}
         </Flex>
         <Link to="/games/1">
           {" "}
