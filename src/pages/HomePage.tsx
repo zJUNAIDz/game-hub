@@ -9,31 +9,33 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <Grid
-    templateAreas={{
-      base: `"main"`,
-      lg: `"aside main"`, //1024px
-    }}
-    templateColumns={{
-      base: "1fr",
-      lg: "180px 1fr",
-    }}
-  >
-    <Show above="lg">
-      <GridItem paddingX={5} area={"aside"}>
-        <GameGenreList />
+      templateAreas={{
+        base: `"main"`,
+        lg: `"aside main"`, //1024px
+      }}
+      templateColumns={{
+        base: "1fr",
+        lg: "180px 1fr",
+      }}
+    >
+      <Show above="lg">
+        <GridItem paddingX={5} area={"aside"}>
+          <GameGenreList />
+        </GridItem>
+      </Show>
+      <GridItem area={"main"}>
+        <GameHeading />
+        <Flex marginBottom={7}>
+          <PlatformSelector />
+          <SortSelector />
+        </Flex>
+        <Link to="/games/1">
+          {" "}
+          <GameGrid />
+        </Link>
       </GridItem>
-    </Show>
-    <GridItem  area={"main"}>
-      <GameHeading />
-      <Flex marginBottom={7}>
-        <PlatformSelector />
-        <SortSelector />
-      </Flex>
-      <Link to='/games/1'>  <GameGrid /></Link>
-     
-    </GridItem>
-  </Grid>
-);
-}
+    </Grid>
+  );
+};
 
-export default HomePage
+export default HomePage;
