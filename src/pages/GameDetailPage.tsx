@@ -1,4 +1,4 @@
-import { Spinner } from "@chakra-ui/react";
+import { Box, Heading, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
@@ -15,11 +15,12 @@ const GameDetailPage = () => {
   if (error || !game) throw error;
   return (
     <div>
-      Name : {game.data.name} <br />
-      <GameTrailer gameId={game.data.id} />
-      Description: <br />
+      <Heading> {game.data.name}</Heading> <br />
       <ExpandableText>{game.data.description_raw}</ExpandableText>
       <GameAttributes game={game.data} />
+      <Box width="100vw" display="flex" justifyContent="center">
+        <GameTrailer gameId={game.data.id} />
+      </Box>
       <GameScreenshots id={game.data.id} />
       {/* <Image src={getCroppedImageURL(game.data.background_image)} /> */}
     </div>
