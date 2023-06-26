@@ -9,11 +9,10 @@ const GameScreenshots = ({ id }: Props) => {
   if (isLoading) return <Spinner />;
   if (error) throw error;
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={2}>
       {screenshots?.results.map((screenshot) => (
         <Image
           key={screenshot.id}
-          border="3px solid black"
           src={screenshot.image}
         />
       ))}
