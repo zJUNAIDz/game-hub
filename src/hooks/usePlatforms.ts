@@ -2,7 +2,7 @@ import ms from "ms";
 import { useQuery } from "react-query";
 import cachedPlatforms from "../data/cached-platforms";
 import ApiClient from "../services/api-client";
-import { Platform } from "../entities/Platform";
+import Platform  from "../entities/Platform";
 
 //platform/lists/parents provides the parent platform name instead of various versions of same ..like ps 1 ps 2 ❌ Ps✅
 const apiClient = new ApiClient<Platform>("/platforms/listFs/parents");

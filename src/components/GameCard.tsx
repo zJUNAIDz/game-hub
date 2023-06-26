@@ -1,5 +1,5 @@
 import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
-import { Game } from "../entities/Game";
+import Game from "../entities/Game";
 import PlatformIconsList from "./PlatformIconsList";
 import CriticScore from "./CriticScore";
 import getCroppedImageURL from "../services/image-url";

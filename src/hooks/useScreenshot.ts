@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Screenshot } from "../entities/Screenshot";
+import Screenshot  from "../entities/Screenshot";
 import ApiClient from "../services/api-client";
 
 const useScreenshot = (id: number) => {

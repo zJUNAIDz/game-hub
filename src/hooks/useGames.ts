@@ -2,7 +2,7 @@ import ms from "ms";
 import { useInfiniteQuery } from "react-query";
 import ApiClient, { DataResponse } from "../services/api-client";
 import useGameQueryStore from "../store";
-import { Game } from "../entities/Game";
+import Game  from "../entities/Game";
 const apiClient = new ApiClient<Game>("/games");
 const useGames = () => {
   const gameQuery = useGameQueryStore((select) => select.gameQuery);
