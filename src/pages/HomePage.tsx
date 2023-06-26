@@ -1,5 +1,4 @@
 import { Flex, Grid, GridItem, Show } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import GameGenreList from "../components/GameGenreList";
 import GameGrid from "../components/GameGrid";
 import GameHeading from "../components/GameHeading";
@@ -28,10 +27,7 @@ const HomePage = () => {
           <PlatformSelector />
           {/* <SortSelector /> // this components is causing to show explicit games so gotta remove it for a while */}
         </Flex>
-        <Link to="/games/1">
-          {" "}
-          <GameGrid />
-        </Link>
+        <GameGrid />
       </GridItem>
     </Grid>
   );
