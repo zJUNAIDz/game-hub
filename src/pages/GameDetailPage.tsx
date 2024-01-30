@@ -11,7 +11,12 @@ const GameDetailPage = () => {
 
   //fix this game.data thing and make game. work
   // const img_url = game?.data.background_image;
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div className="w-full flex items-center ml-10">
+        <Spinner size="md" />
+      </div>
+    );
   if (error || !game) throw error;
   return (
     <div>
