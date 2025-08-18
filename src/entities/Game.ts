@@ -13,4 +13,9 @@ export default interface Game {
   publishers: Publisher[];
   metacritic: number;
   rating_top: number;
+  esrb_rating?: {
+    id: number | null;
+    name: string | null;
+    slug: string | null;
+  };
 }
