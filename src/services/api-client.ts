@@ -5,11 +5,14 @@ export interface DataResponse<T> {
   previous: string | null;
   results: T[];
 }
+
+const API_ENDPOINT = (import.meta.env.VITE_API_ENDPOINT ?? "") as string;
+const API_KEY = (import.meta.env.VITE_API_KEY ?? "") as string;
+
 const axiosInstance = axios.create({
-  baseURL: "https://api.rawg.io/api/",
+  baseURL: API_ENDPOINT,
   params: {
-    // key: "eda951b243dd43e2a563774e03bd36b6",
-    key: "c542e67aec3a4340908f9de9e86038af",
+    key: API_KEY,
   },
 });
 
