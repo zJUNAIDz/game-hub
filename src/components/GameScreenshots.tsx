@@ -1,22 +1,40 @@
-import { Image, SimpleGrid, Spinner } from "@chakra-ui/react";
+import { Box, Spinner, Text } from "@chakra-ui/react";
 import useScreenshot from "../hooks/useScreenshot";
+import Carousel from "./Carousel";
+import getCroppedImageURL from "../services/image-url";
+
 interface Props {
   id: number;
+  gameName?: string;
 }
-const GameScreenshots = ({ id }: Props) => {
+
+const GameScreenshots = ({ id, gameName = "Game" }: Props) => {
   const { data: screenshots, isLoading, error } = useScreenshot(id);
-  console.log(screenshots?.results);
-  if (isLoading) return <Spinner />;
+
+  if (isLoading) return <Spinner size="lg" />;
   if (error) throw error;
+
+  const screenshotUrls = screenshots?.results?.map((screenshot) => 
+    getCroppedImageURL(screenshot.image)
+  ) || [];
+
+  if (screenshotUrls.length === 0) {
+    return (
+      <Box textAlign="center" py={8}>
+        <Text color="gray.500">No screenshots available</Text>
+      </Box>
+    );
+  }
+
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={2}>
-      {screenshots?.results.map((screenshot) => (
-        <Image
-          key={screenshot.id}
-          src={screenshot.image}
-        />
-      ))}
-    </SimpleGrid>
+    <Box w="100%" py={4}>
+      <Carousel
+        images={screenshotUrls}
+        altPrefix={`${gameName} screenshot`}
+        showThumbnails={true}
+        ariaLabel={`Screenshots for ${gameName}`}
+      />
+    </Box>
   );
 };
 
