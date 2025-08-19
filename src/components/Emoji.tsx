@@ -1,8 +1,12 @@
-import {Text} from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react';
+
 interface Props {
-  rating: number;
+  rating?: number;
 }
+
 const Emoji = ({ rating }: Props) => {
+  if (!rating) return null;
+  
   const EmojiMap: { [key: number]: string } = {
     1: "🤡",
     2: "📛",
@@ -10,6 +14,7 @@ const Emoji = ({ rating }: Props) => {
     4: "🔥",
     5: "🎯",
   };
+  
   return <Text fontSize='2xl'>{EmojiMap[rating]}</Text>;
 };
 

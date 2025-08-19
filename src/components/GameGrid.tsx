@@ -38,7 +38,7 @@ const GameGrid = () => {
       <SimpleGrid columns={{ sm: 1, md: 3, lg: 3, xl: 4 }} spacing={5}>
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>
-            {page.results.filter((game) => game.esrb_rating != null && game.esrb_rating.slug != "adults-only").map((game) => (
+            {page.results.filter(Boolean).filter((game) => game.esrb_rating != null && game.esrb_rating.slug != "adults-only").map((game) => (
               <GameCardContainer key={game.id}>
                 <GameCard game={game} />
               </GameCardContainer>
