@@ -16,6 +16,7 @@ import {
   AlertTitle,
   AlertDescription,
 } from "@chakra-ui/react";
+import { lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
@@ -24,6 +25,27 @@ import GameTrailer from "../components/GameTrailer";
 import useGame from "../hooks/useGame";
 import getCroppedImageURL from "../services/image-url";
 import CriticScore from "../components/CriticScore";
+
+// Lazy load the additional sections for performance
+const SuggestedGamesSection = lazy(() => import("../components/SuggestedGamesSection"));
+const GameSeriesSection = lazy(() => import("../components/GameSeriesSection"));
+const AdditionsSection = lazy(() => import("../components/AdditionsSection"));
+
+// Skeleton components for lazy-loaded sections
+const SectionSkeleton = () => (
+  <Box mb={8}>
+    <Skeleton height="24px" width="200px" mb={4} />
+    <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)" }} gap={4}>
+      {Array.from({ length: 4 }, (_, index) => (
+        <Box key={index}>
+          <Skeleton height="150px" borderRadius="md" />
+          <Skeleton height="20px" mt={2} />
+          <Skeleton height="16px" mt={1} width="80%" />
+        </Box>
+      ))}
+    </Grid>
+  </Box>
+);
 
 const GameDetailPage = () => {
   const { slug } = useParams();
@@ -222,6 +244,24 @@ const GameDetailPage = () => {
             </VStack>
           </GridItem>
         </Grid>
+
+        {/* Additional Sections */}
+        <VStack spacing={8} align="stretch">
+          {/* Additions Section */}
+          <Suspense fallback={<SectionSkeleton />}>
+            <AdditionsSection gameId={gameData.id} />
+          </Suspense>
+
+          {/* Game Series Section */}
+          <Suspense fallback={<SectionSkeleton />}>
+            <GameSeriesSection gameId={gameData.id} />
+          </Suspense>
+
+          {/* Suggested Games Section */}
+          <Suspense fallback={<SectionSkeleton />}>
+            <SuggestedGamesSection gameId={gameData.id} />
+          </Suspense>
+        </VStack>
       </VStack>
     </Container>
   );
