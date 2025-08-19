@@ -1,3 +1,4 @@
+import { isGameAllowed } from "../utils/gameFilters";
 import {
   Box,
   Heading,
@@ -135,7 +136,7 @@ const AdditionsSection = ({ gameId }: Props) => {
   }
 
   // Handle the response structure from the API
-  const additions = data?.results || [];
+  const additions = (data?.results || []).filter(isGameAllowed);
 
   if (additions.length === 0) {
     return (

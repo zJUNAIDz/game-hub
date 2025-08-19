@@ -1,3 +1,4 @@
+import { isGameAllowed } from "../utils/gameFilters";
 import {
   Box,
   Heading,
@@ -134,7 +135,7 @@ const SuggestedGamesSection = ({ gameId }: Props) => {
     );
   }
 
-  const suggestedGames = data?.results || [];
+  const suggestedGames = (data?.results || []).filter(isGameAllowed);
 
   if (suggestedGames.length === 0) {
     return (

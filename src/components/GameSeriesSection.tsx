@@ -1,3 +1,4 @@
+import { isGameAllowed } from "../utils/gameFilters";
 import {
   Box,
   Heading,
@@ -135,7 +136,7 @@ const GameSeriesSection = ({ gameId }: Props) => {
   }
 
   // Handle the response structure from the API
-  const seriesGames = data?.results || [];
+  const seriesGames = (data?.results || []).filter(isGameAllowed);
 
   if (seriesGames.length === 0) {
     return (
