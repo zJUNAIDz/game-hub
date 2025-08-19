@@ -1,5 +1,5 @@
 
-import { Flex, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
 import { Helmet } from "react-helmet-async";
 import GameGenreList from "../components/GameGenreList";
 import GameGrid from "../components/GameGrid";
@@ -33,8 +33,10 @@ const HomePage = () => {
         }}
       >
         <Show above="lg">
-          <GridItem paddingX={5} area={"aside"}>
-            <GameGenreList />
+          <GridItem paddingX={5} area={"aside"} overflow="hidden" maxWidth="120px">
+            <Box position="fixed" maxHeight="100vh" overflowY="auto">
+              <GameGenreList />
+            </Box>
           </GridItem>
         </Show>
         <GridItem area={"main"}>
