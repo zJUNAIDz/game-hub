@@ -5,9 +5,9 @@ export interface DataResponse<T> {
   previous: string | null;
   results: T[];
 }
-
-const API_ENDPOINT = (import.meta.env.VITE_API_ENDPOINT ?? "") as string;
-const API_KEY = (import.meta.env.VITE_API_KEY ?? "") as string;
+const API_ENDPOINT = (import.meta.env.VITE_API_ENDPOINT ?? "https://api.rawg.io/api/") as string;
+//this is not a "secret" keys btw...
+const API_KEY = (import.meta.env.VITE_API_KEY ?? "c542e67aec3a4340908f9de9e86038af") as string;
 
 const axiosInstance = axios.create({
   baseURL: API_ENDPOINT,
