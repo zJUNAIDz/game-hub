@@ -3,6 +3,7 @@ import Platform from "./Platform";
 import Publisher from "./Publisher";
 
 export default interface Game {
+  tags?: { id: number; name: string }[];
   id: number;
   slug: string;
   name: string;

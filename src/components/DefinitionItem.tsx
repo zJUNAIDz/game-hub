@@ -2,7 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface Props {
-  term: string;
+  term: string | ReactNode;
   children: ReactNode | ReactNode[];
 }
 const DefinitionItem = ({ term, children }: Props) => {

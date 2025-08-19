@@ -118,42 +118,57 @@ const GameDetailPage = () => {
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={metaImage} />
       </Helmet>
-      <Container maxW="8xl" py={8}>
-        <VStack spacing={8} align="stretch">
+      <Container maxW="container.xl" py={{ base: 4, md: 8 }} px={{ base: 2, md: 4 }}>
+        <VStack spacing={{ base: 6, md: 10 }} align="stretch">
           {/* Header Section */}
-          <Box>
-            <VStack spacing={4} align="start">
-              <HStack spacing={4} wrap="wrap">
-                <Heading size="2xl" color="purple.400">
-                  {gameData.name}
-                </Heading>
-                {gameData.metacritic && (
-                  <CriticScore score={gameData.metacritic} />
-                )}
-              </HStack>
-
-              <HStack spacing={4} wrap="wrap">
+          <Box as="header" w="full" pb={2} borderBottomWidth={1} borderColor={borderColor}>
+            <VStack spacing={2} align="start" w="full">
+              <Heading size="xl" color="purple.400" wordBreak="break-word">
+                {gameData.name}
+              </Heading>
+              {gameData.name_original && gameData.name_original !== gameData.name && (
+                <Text fontSize="md" color="gray.500" fontStyle="italic">
+                  {gameData.name_original}
+                </Text>
+              )}
+              {Array.isArray(gameData.alternative_names) && gameData.alternative_names.length > 0 && (
+                <Text fontSize="sm" color="gray.400">
+                  Also known as: {gameData.alternative_names.join(", ")}
+                </Text>
+              )}
+              <HStack spacing={2} wrap="wrap" pt={1}>
+                {gameData.metacritic && <CriticScore score={gameData.metacritic} />}
                 {gameData.released && (
-                  <Badge colorScheme="blue" px={3} py={1}>
-                    Released: {new Date(gameData.released).toLocaleDateString()}
+                  <Badge colorScheme="blue" px={2} py={1} fontSize="xs">
+                    {new Date(gameData.released).toLocaleDateString()}
                   </Badge>
                 )}
                 {gameData.esrb_rating && (
-                  <Badge colorScheme="orange" px={3} py={1}>
+                  <Badge colorScheme="orange" px={2} py={1} fontSize="xs">
                     {gameData.esrb_rating.name}
                   </Badge>
                 )}
                 {gameData.rating_top && (
-                  <Badge colorScheme="green" px={3} py={1}>
-                    Rating: {gameData.rating_top}/5
+                  <Badge colorScheme="green" px={2} py={1} fontSize="xs">
+                    {gameData.rating_top}/5
+                  </Badge>
+                )}
+                {gameData.ratings_count && (
+                  <Badge colorScheme="purple" px={2} py={1} fontSize="xs">
+                    {gameData.ratings_count} ratings
+                  </Badge>
+                )}
+                {gameData.suggestions_count && (
+                  <Badge colorScheme="teal" px={2} py={1} fontSize="xs">
+                    {gameData.suggestions_count} suggestions
                   </Badge>
                 )}
               </HStack>
             </VStack>
           </Box>
 
-          {/* Main Content Grid */}
-          <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={8}>
+          {/* Main Content Grid - Responsive */}
+          <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={{ base: 6, md: 10 }}>
             {/* Left Column - Media */}
             <GridItem>
               <VStack spacing={6} align="stretch">
@@ -170,15 +185,43 @@ const GameDetailPage = () => {
                       src={getCroppedImageURL(gameData.background_image)}
                       alt={`${gameData.name} background`}
                       w="100%"
-                      h="300px"
+                      h={{ base: "180px", sm: "250px", md: "300px" }}
                       objectFit="cover"
                     />
                   </Box>
                 )}
 
+                {/* Quick Facts Section */}
+                <Box bg={bgColor} borderRadius="lg" border="1px" borderColor={borderColor} p={4}>
+                  <Heading size="sm" mb={2} color="purple.400">Quick Facts</Heading>
+                  <HStack spacing={4} wrap="wrap">
+                    {gameData.playtime && (
+                      <Badge colorScheme="purple">Avg. Playtime: {gameData.playtime}h</Badge>
+                    )}
+                    {gameData.achievements_count && (
+                      <Badge colorScheme="yellow">Achievements: {gameData.achievements_count}</Badge>
+                    )}
+                    {gameData.screenshots_count && (
+                      <Badge colorScheme="blue">Screenshots: {gameData.screenshots_count}</Badge>
+                    )}
+                    {gameData.movies_count && (
+                      <Badge colorScheme="red">Movies: {gameData.movies_count}</Badge>
+                    )}
+                    {gameData.parents_count && (
+                      <Badge colorScheme="gray">Parents: {gameData.parents_count}</Badge>
+                    )}
+                    {gameData.additions_count && (
+                      <Badge colorScheme="cyan">Additions: {gameData.additions_count}</Badge>
+                    )}
+                    {gameData.game_series_count && (
+                      <Badge colorScheme="teal">Series: {gameData.game_series_count}</Badge>
+                    )}
+                  </HStack>
+                </Box>
+
                 {/* Trailer */}
                 <Box>
-                  <Heading size="md" mb={4}>
+                  <Heading size="md" mb={3} color="purple.400">
                     Trailer
                   </Heading>
                   <GameTrailer gameId={gameData.id} />
@@ -186,7 +229,7 @@ const GameDetailPage = () => {
 
                 {/* Screenshots */}
                 <Box>
-                  <Heading size="md" mb={4}>
+                  <Heading size="md" mb={3} color="purple.400">
                     Screenshots
                   </Heading>
                   <GameScreenshots id={gameData.id} gameName={gameData.name} />
@@ -199,7 +242,7 @@ const GameDetailPage = () => {
               <VStack spacing={6} align="stretch">
                 {/* Description */}
                 <Box>
-                  <Heading size="md" mb={4}>
+                  <Heading size="md" mb={3} color="purple.400">
                     About
                   </Heading>
                   {gameData.description_raw ? (
@@ -211,57 +254,46 @@ const GameDetailPage = () => {
 
                 {/* Game Attributes */}
                 <Box>
-                  <Heading size="md" mb={4}>
+                  <Heading size="md" mb={3} color="purple.400">
                     Game Details
                   </Heading>
                   <GameAttributes game={gameData} />
                 </Box>
 
-                {/* Additional Stats */}
-                {(gameData.achievements_count || gameData.screenshots_count || gameData.movies_count) && (
+                {/* Tags/Keywords */}
+                {Array.isArray(gameData.tags) && gameData.tags.length > 0 && (
                   <Box>
-                    <Heading size="md" mb={4}>
-                      Statistics
-                    </Heading>
-                    <VStack spacing={2} align="stretch">
-                      {gameData.achievements_count && (
-                        <HStack justify="space-between">
-                          <Text>Achievements:</Text>
-                          <Badge>{gameData.achievements_count}</Badge>
-                        </HStack>
-                      )}
-                      {gameData.screenshots_count && (
-                        <HStack justify="space-between">
-                          <Text>Screenshots:</Text>
-                          <Badge>{gameData.screenshots_count}</Badge>
-                        </HStack>
-                      )}
-                      {gameData.movies_count && (
-                        <HStack justify="space-between">
-                          <Text>Movies/Trailers:</Text>
-                          <Badge>{gameData.movies_count}</Badge>
-                        </HStack>
-                      )}
-                    </VStack>
+                    <Heading size="sm" mb={2} color="purple.400">Tags</Heading>
+                    <HStack spacing={2} wrap="wrap">
+                      {gameData.tags.map((tag: { id: number; name: string }) => (
+                        <Badge key={tag.id} colorScheme="purple" variant="subtle">{tag.name}</Badge>
+                      ))}
+                    </HStack>
                   </Box>
                 )}
 
-                {/* Website Link */}
-                {gameData.website && (
+                {/* Social & External Links */}
+                {(gameData.website || gameData.reddit_url || gameData.twitch_count || gameData.youtube_count) && (
                   <Box>
-                    <Heading size="md" mb={4}>
-                      Links
-                    </Heading>
-                    <Box
-                      as="a"
-                      href={gameData.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      color="purple.400"
-                      _hover={{ textDecoration: "underline" }}
-                    >
-                      Official Website
-                    </Box>
+                    <Heading size="sm" mb={2} color="purple.400">Links</Heading>
+                    <HStack spacing={4} wrap="wrap">
+                      {gameData.website && (
+                        <Box as="a" href={gameData.website} target="_blank" rel="noopener noreferrer" color="purple.400" fontWeight="bold" _hover={{ textDecoration: "underline" }}>
+                          Official Website
+                        </Box>
+                      )}
+                      {gameData.reddit_url && (
+                        <Box as="a" href={gameData.reddit_url} target="_blank" rel="noopener noreferrer" color="orange.400" fontWeight="bold" _hover={{ textDecoration: "underline" }}>
+                          Reddit
+                        </Box>
+                      )}
+                      {gameData.twitch_count && (
+                        <Box as="span" color="purple.500">Twitch: {gameData.twitch_count}</Box>
+                      )}
+                      {gameData.youtube_count && (
+                        <Box as="span" color="red.500">YouTube: {gameData.youtube_count}</Box>
+                      )}
+                    </HStack>
                   </Box>
                 )}
               </VStack>
@@ -270,17 +302,12 @@ const GameDetailPage = () => {
 
           {/* Additional Sections */}
           <VStack spacing={8} align="stretch">
-            {/* Additions Section */}
             <Suspense fallback={<SectionSkeleton />}>
               <AdditionsSection gameId={gameData.id} />
             </Suspense>
-
-            {/* Game Series Section */}
             <Suspense fallback={<SectionSkeleton />}>
               <GameSeriesSection gameId={gameData.id} />
             </Suspense>
-
-            {/* Suggested Games Section */}
             <Suspense fallback={<SectionSkeleton />}>
               <SuggestedGamesSection gameId={gameData.id} />
             </Suspense>
